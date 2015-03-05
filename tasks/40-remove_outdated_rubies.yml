@@ -1,0 +1,4 @@
+- name: Remove all outdated_ruby_versions
+  file: name=/opt/rubies/{{item}} state=absent
+  with_items: outdated_ruby_versions
+  when: outdated_ruby_versions is defined

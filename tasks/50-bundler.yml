@@ -1,0 +1,7 @@
+# file: chruby/tasks/bundler.yml
+
+- name: Install bundler
+  gem: >
+    executable="{{chruby_exec_command}} {{ruby_version}} -- gem"
+    name=bundler
+    state=present
