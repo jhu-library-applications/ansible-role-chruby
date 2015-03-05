@@ -5,4 +5,3 @@
 - include: 20-ruby-install.yml
 - include: 30-ruby.yml
 - include: 40-remove_outdated_rubies.yml
-- include: 50-bundler.yml
