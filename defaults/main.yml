@@ -7,7 +7,7 @@ ruby_install_version: 0.5.0
 ruby_install_checksum: aa4448c2c356510cc7c2505961961a17bd3f3435842831e04c8516eb703afd19.
 ruby_install_command: /usr/local/bin/ruby-install
 
-ruby_version: ruby-2.1.5
+ruby_version: ruby-2.2.2
 
 # These ruby versions will be removed if they are found:
-outdated_ruby_versions: []
+outdated_ruby_versions: [] # later: ruby-2.1.5
