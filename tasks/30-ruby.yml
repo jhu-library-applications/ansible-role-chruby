@@ -6,4 +6,4 @@
 
 - name: Install ruby_version if necessary
   command: '{{ruby_install_command}} ruby {{ruby_version|replace("ruby-", "")}}'
-  when: ruby_version_folder.stat.exists == false
+  when: not ruby_version_folder.stat.exists
