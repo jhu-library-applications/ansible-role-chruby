@@ -1,9 +1,9 @@
 # file: chruby/tasks/ruby.yml
 
 - name: Find out if ruby_version is already installed
-  stat: path=/opt/rubies/{{ruby_version}}
+  stat: path=/opt/rubies/{{chruby_ruby_version}}
   register: ruby_version_folder
 
 - name: Install ruby_version if necessary
-  command: '{{ruby_install_command}} ruby {{ruby_version|replace("ruby-", "")}}'
+  command: '{{chruby_ruby_install_command}} ruby {{chruby_ruby_version|replace("ruby-", "")}}'
   when: not ruby_version_folder.stat.exists
