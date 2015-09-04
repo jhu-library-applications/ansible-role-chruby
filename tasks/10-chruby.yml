@@ -1,8 +1,14 @@
 # file: chruby/tasks/chruby.yml
 
+- file: path=/opt/build state=directory mode=0755 owner=root group=root
+
+- stat: path="/opt/build"
+  register: opt_build_created
+
 - get_url: url=https://github.com/postmodern/chruby/archive/v{{chruby_chruby_version}}.tar.gz
            dest=/opt/build/chruby-{{chruby_chruby_version}}.tar.gz
            sha256sum={{chruby_chruby_checksum}}
+  when: opt_build_created.stat.exists
 
 - unarchive: src=/opt/build/chruby-{{chruby_chruby_version}}.tar.gz
              dest=/opt/build/
@@ -14,3 +20,5 @@
 
 - template: src=chruby.sh.j2 dest=/etc/profile.d/chruby.sh mode=u+x
 
+- stat: path="{{chruby_chruby_exec_command}}"
+  register: chruby_file
