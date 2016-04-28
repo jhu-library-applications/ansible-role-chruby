@@ -1,5 +1,3 @@
-# file: chruby/tasks/ruby.yml
-
 - name: Find out if ruby_version is already installed
   stat: path=/opt/rubies/{{chruby_ruby_version}}
   register: ruby_version_folder
@@ -7,3 +5,10 @@
 - name: Install ruby_version if necessary
   command: '{{chruby_ruby_install_command}} ruby {{chruby_ruby_version|replace("ruby-", "")}}'
   when: not ruby_version_folder.stat.exists
+
+- name: Install bundler
+  gem: >
+    executable="{{chruby_chruby_exec_command}} {{chruby_ruby_version}} -- gem"
+    name=bundler
+    state=present
+    user_install=no
