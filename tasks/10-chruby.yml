@@ -18,7 +18,5 @@
 - shell: make install chdir=/opt/build/chruby-{{chruby_chruby_version}}
   when: chruby_unarchive.changed
 
-- template: src=chruby.sh.j2 dest=/etc/profile.d/chruby.sh mode=u+x
-
 - stat: path="{{chruby_chruby_exec_command}}"
   register: chruby_file
