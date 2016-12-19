@@ -6,12 +6,12 @@
   command: '{{chruby_ruby_install_command}} ruby {{chruby_ruby_version|replace("ruby-", "")}}'
   when: not ruby_version_folder.stat.exists
 
+# Update the shell integration after installing the new version
+- template: src=chruby.sh.j2 dest=/etc/profile.d/chruby.sh mode=u+x
+
 - name: Install bundler
   gem: >
     executable="{{chruby_chruby_exec_command}} {{chruby_ruby_version}} -- gem"
     name=bundler
     state=present
     user_install=no
-
-# Update the shell integration after installing the new version
-- template: src=chruby.sh.j2 dest=/etc/profile.d/chruby.sh mode=u+x
