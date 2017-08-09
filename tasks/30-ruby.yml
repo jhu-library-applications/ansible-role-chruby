@@ -3,7 +3,7 @@
   register: ruby_version_folder
 
 - name: Install ruby_version if necessary
-  command: '{{chruby_ruby_install_command}} ruby {{chruby_ruby_version|replace("ruby-", "")}}'
+  command: "{{chruby_ruby_install_command}} {{chruby_ruby_version | regex_replace('-((\\d)+(\\.)*)*', '')}} {{ chruby_ruby_version | regex_replace('^(\\w)+-*', '')}}"
   when: not ruby_version_folder.stat.exists
 
 # Update the shell integration after installing the new version
